@@ -1,0 +1,6 @@
+Bill breakdown:
+hamburger:                ...$9.89
+hotdog:                   ...$7.99
+ice cream:                ...$5
+tip:                      ...$10
+total:                    ...$32.88

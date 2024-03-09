@@ -57,12 +57,20 @@ func (b *bill) updateTip(tip float64) {
 
 // save bill
 func (b *bill) save() {
-	data := []byte(b.format())
-	err := os.WriteFile("bills/"+b.name+".txt", data, 0644)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("Bill saved to file")
+	dir := "20-SavingFiles/bills/"
+    if _, err := os.Stat(dir); os.IsNotExist(err) {
+        err := os.Mkdir(dir, 0755)
+        if err != nil {
+            panic(err)
+        }
+    }
+
+    data := []byte(b.format())
+    err := os.WriteFile(dir+b.name+".txt", data, 0644)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println("Bill saved to file")
 }
 
 func getInput(prompt string, r *bufio.Reader) (string, error) {
@@ -130,5 +138,4 @@ func main() {
 
 	mybill := createBill()
 	promptOptions(mybill)
-
 }
